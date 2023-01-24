@@ -8,11 +8,17 @@ function App() {
 
   const [presupuesto, setPresupuesto] = useState(0)
   const [presupuestoValido, setPresupuestoValido] = useState(false)
+
   const [ventanaModal, setVentanaModal] = useState(false)
+  const [animarModal, setAnimarModal] = useState(false)
 
   const handleNuevoGasto = () => {
     //console.log("diste click para añadir nuevo gasto")
     setVentanaModal(true)
+    setTimeout(() => {
+      setAnimarModal(true)
+    }, 400)
+
   }
 
   return(
@@ -33,7 +39,11 @@ function App() {
       />
     </div>
     ): null }
-    {ventanaModal && <VentanaModal setVentanaModal={setVentanaModal}/>}
+    {ventanaModal && <VentanaModal 
+                      setVentanaModal={setVentanaModal}
+                      animarModal={animarModal}
+                      setAnimarModal={setAnimarModal}
+                      />}
 
     
   </div>
