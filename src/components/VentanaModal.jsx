@@ -1,8 +1,24 @@
 import React from 'react'
-import CerrarBtn from "../img/cerrar.svg"
 import { useState } from 'react'
+import Mensaje from './Mensaje'
+import CerrarBtn from "../img/cerrar.svg"
 
-const VentanaModal = ({setVentanaModal, animarModal, setAnimarModal}) => {
+
+const VentanaModal = ({
+      setVentanaModal, 
+      animarModal, 
+      setAnimarModal, 
+      guardarGasto
+    }) => {
+
+
+    const [mensaje, setMensaje] = useState('')
+
+    const [nombre, setNombre] = useState('')
+    const [cantidad, setCantidad] = useState('')
+    const [categoria, setCategoria] = useState('')
+
+    
 
     const ocultarModal = () => {
         
@@ -11,6 +27,21 @@ const VentanaModal = ({setVentanaModal, animarModal, setAnimarModal}) => {
         setTimeout(() => {
           setVentanaModal(false)
         }, 400);
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        //console.log("enviando datos")
+
+        if([nombre, cantidad, categoria].includes('')){
+          //console.log("campos vacios")
+          setMensaje('Todos los campos son obligatorios')
+          setTimeout(() => {
+            setMensaje('')
+          }, 3000);
+          return
+        }
+        guardarGasto({nombre, cantidad, categoria});
     }
 
   return (
@@ -22,8 +53,12 @@ const VentanaModal = ({setVentanaModal, animarModal, setAnimarModal}) => {
             onClick={ocultarModal}
         />
       </div>
-      <form action="" className={`formulario ${animarModal ?  "animar" : "cerrar"}`}>
+      <form 
+      onSubmit={handleSubmit}
+      className={`formulario ${animarModal ?  "animar" : "cerrar"}`}
+      >
         <legend>Nuevo Gasto</legend>
+        {mensaje && <Mensaje tipo="error">{mensaje}</Mensaje>}
 
         <div className="campo">
           <label htmlFor="nombre">Nombre Gasto</label>
@@ -31,6 +66,8 @@ const VentanaModal = ({setVentanaModal, animarModal, setAnimarModal}) => {
             id='nombre'
             type="text"
             placeholder='Añade el nombre del gasto' 
+            value={nombre}
+            onChange={(e) => setNombre(e.target.value)}
           />
         </div>
 
@@ -40,12 +77,18 @@ const VentanaModal = ({setVentanaModal, animarModal, setAnimarModal}) => {
             id='cantidad'
             type="text"
             placeholder='Añade la cantidad del gasto: ej. 300' 
+            value={cantidad}
+            onChange={(e) => setCantidad(Number(e.target.value))}
           />
         </div>
 
         <div className="campo">
           <label htmlFor="categoria">Categoria</label>
-            <select id="categoria">
+            <select 
+            id="categoria"
+            value={categoria}
+            onChange={(e) => setCategoria(e.target.value)}
+            >
               <option value="">-- Seleccione una categoría --</option>
               <option value="comida">Comida</option>
               <option value="casa">Casa</option>
