@@ -1,10 +1,19 @@
 import { useState } from 'react'
 import Header from './components/Header'
+import VentanaModal from './components/VentanaModal'
+import IconoNuevoGasto from "./img/nuevo-gasto.svg"
+
 
 function App() {
 
   const [presupuesto, setPresupuesto] = useState(0)
   const [presupuestoValido, setPresupuestoValido] = useState(false)
+  const [ventanaModal, setVentanaModal] = useState(false)
+
+  const handleNuevoGasto = () => {
+    //console.log("diste click para añadir nuevo gasto")
+    setVentanaModal(true)
+  }
 
   return(
   <div className="App">
@@ -14,6 +23,19 @@ function App() {
       presupuestoValido = {presupuestoValido}
       setPresupuestoValido = {setPresupuestoValido}
     />
+
+    {presupuestoValido ? (
+    <div className="nuevo-gasto">
+      <img 
+      src={IconoNuevoGasto} 
+      alt="Icono Nuevo Gasto"
+      onClick={handleNuevoGasto} 
+      />
+    </div>
+    ): null }
+    {ventanaModal && <VentanaModal setVentanaModal={setVentanaModal}/>}
+
+    
   </div>
   )
 
