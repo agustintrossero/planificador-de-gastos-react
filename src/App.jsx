@@ -26,7 +26,8 @@ function App() {
 
   const guardarGasto = (gasto) => {
   //  console.log(gasto)
-  gasto.id = generarID()
+  gasto.id = generarID() //gasto.id hace q se agregue al objeto gastos
+  gasto.fecha=Date.now() //gasto.fecha hace q se agregue al objeto gastos
   setGastos([...gastos, gasto])
 
   setAnimarModal(false)
