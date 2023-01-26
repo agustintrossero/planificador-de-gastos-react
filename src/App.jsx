@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import Header from './components/Header'
 import VentanaModal from './components/VentanaModal'
+import ListadoGastos from './components/ListadoGastos'
+import { generarID } from './helpers'
 import IconoNuevoGasto from "./img/nuevo-gasto.svg"
 
 
@@ -12,6 +14,8 @@ function App() {
   const [ventanaModal, setVentanaModal] = useState(false)
   const [animarModal, setAnimarModal] = useState(false)
 
+  const [gastos, setGastos] = useState([])
+
   const handleNuevoGasto = () => {
     //console.log("diste click para añadir nuevo gasto")
     setVentanaModal(true)
@@ -21,7 +25,14 @@ function App() {
   }
 
   const guardarGasto = (gasto) => {
-    console.log(gasto)
+  //  console.log(gasto)
+  gasto.id = generarID()
+  setGastos([...gastos, gasto])
+
+  setAnimarModal(false)
+  setTimeout(() => {
+    setVentanaModal(false)
+  }, 400);
   }
 
   return(
@@ -34,13 +45,20 @@ function App() {
     />
 
     {presupuestoValido ? (
-    <div className="nuevo-gasto">
-      <img 
-      src={IconoNuevoGasto} 
-      alt="Icono Nuevo Gasto"
-      onClick={handleNuevoGasto} 
-      />
-    </div>
+      <>
+        <main>
+          <ListadoGastos
+            gastos = {gastos}
+          />
+        </main>
+        <div className="nuevo-gasto">
+          <img 
+          src={IconoNuevoGasto} 
+          alt="Icono Nuevo Gasto"
+          onClick={handleNuevoGasto} 
+          />
+        </div>
+      </>
     ): null }
     {ventanaModal && <VentanaModal 
                       setVentanaModal={setVentanaModal}
