@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Header from './components/Header'
 import VentanaModal from './components/VentanaModal'
 import ListadoGastos from './components/ListadoGastos'
@@ -15,6 +15,15 @@ function App() {
   const [animarModal, setAnimarModal] = useState(false)
 
   const [gastos, setGastos] = useState([])
+
+  const [gastoEditar, setGastoEditar] = useState({})
+
+  useEffect(() => {
+    if(Object.keys(gastoEditar).length > 0){
+      //console.log("editando")
+      handleNuevoGasto(gastoEditar)      
+      }
+    }, [gastoEditar])
 
   const handleNuevoGasto = () => {
     //console.log("diste click para añadir nuevo gasto")
@@ -51,6 +60,7 @@ function App() {
         <main>
           <ListadoGastos
             gastos = {gastos}
+            setGastoEditar = {setGastoEditar}
           />
         </main>
         <div className="nuevo-gasto">

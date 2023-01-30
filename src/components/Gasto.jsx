@@ -1,4 +1,4 @@
-import React from 'react'
+
 import {
   LeadingActions,
   SwipeableList,
@@ -30,22 +30,32 @@ const diccionarioIconos = {
   suscripciones: IconoSuscripciones
 }
 
-const Gasto = ({gasto}) => {
+const Gasto = ({gasto, setGastoEditar}) => {
 
     const {nombre, cantidad, categoria, id, fecha} = gasto
 
-    const leadingActions = ()=>{
-      console.log("Editar....")
-    }
-    const trailingActions = ()=>{
-      console.log("Eliminar....")
-    }
+    const leadingActions = ()=>(
+      <LeadingActions>
+        <SwipeAction onClick={()=>setGastoEditar(gasto)}>
+          EDITAR
+        </SwipeAction>
+      </LeadingActions>
+    )
+    const trailingActions = ()=>(
+      <TrailingActions>
+        <SwipeAction onClick={()=>console.log("eliminar....")}>
+          ELIMINAR
+        </SwipeAction>
+      </TrailingActions>
+    )
+
+    
     
   return (
     <SwipeableList>
       <SwipeableListItem
-        leadingActions={leadingActions}
-        trailingActions={trailingActions}
+        leadingActions={leadingActions()}
+        trailingActions={trailingActions()}
       >
         <div className='gasto sombra'>
           <div className="contenido-gasto">
