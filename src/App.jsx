@@ -37,8 +37,9 @@ function App() {
   }
 
   return(
-  <div className={ventanaModal && "fijar" }>
+  <div className={ventanaModal ? "fijar" : "" }>
     <Header
+      gastos = {gastos}
       presupuesto = {presupuesto}
       setPresupuesto = {setPresupuesto}
       presupuestoValido = {presupuestoValido}
