@@ -37,7 +37,7 @@ function App() {
   }
 
   return(
-  <div className="App">
+  <div className={ventanaModal && "fijar" }>
     <Header
       presupuesto = {presupuesto}
       setPresupuesto = {setPresupuesto}
