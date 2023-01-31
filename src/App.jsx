@@ -21,29 +21,45 @@ function App() {
   useEffect(() => {
     if(Object.keys(gastoEditar).length > 0){
       //console.log("editando")
-      handleNuevoGasto(gastoEditar)      
+      setVentanaModal(true)
+  
+      setTimeout(() => {
+        setAnimarModal(true)
+      }, 400)  
       }
     }, [gastoEditar])
 
   const handleNuevoGasto = () => {
     //console.log("diste click para añadir nuevo gasto")
     setVentanaModal(true)
+    setGastoEditar({})
+
     setTimeout(() => {
       setAnimarModal(true)
     }, 400)
   }
 
   const guardarGasto = (gasto) => {
-  //  console.log(gasto)
-  gasto.id = generarID() //gasto.id hace q se agregue al objeto gastos
-  gasto.fecha=Date.now() //gasto.fecha hace q se agregue al objeto gastos
-  setGastos([...gastos, gasto])
+  //console.log(gasto)
+  if(gasto.id){
+    //actualizar
+    const gastosActualizados = gastos.map(gastoState => gastoState.id === gasto.id ? gasto : gastoState)
+    setGastos(gastosActualizados)
+    
+    } else {
 
-  setAnimarModal(false)
-  setTimeout(() => {
-    setVentanaModal(false)
-  }, 400);
+    gasto.id = generarID() //gasto.id hace q se agregue al objeto gastos
+    gasto.fecha=Date.now() //gasto.fecha hace q se agregue al objeto gastos
+    setGastos([...gastos, gasto])
+    }
+
+    setAnimarModal(false)
+    setTimeout(() => {
+      setVentanaModal(false)
+    }, 400);
   }
+
+
 
   return(
   <div className={ventanaModal ? "fijar" : "" }>
@@ -77,6 +93,7 @@ function App() {
                       animarModal={animarModal}
                       setAnimarModal={setAnimarModal}
                       guardarGasto={guardarGasto}
+                      gastoEditar={gastoEditar}
                       />}
 
     
