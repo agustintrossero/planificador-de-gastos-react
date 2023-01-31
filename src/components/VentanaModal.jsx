@@ -9,7 +9,8 @@ const VentanaModal = ({
       animarModal, 
       setAnimarModal, 
       guardarGasto,
-      gastoEditar
+      gastoEditar,
+      setGastoEditar
     }) => {
 
 
@@ -38,6 +39,7 @@ const VentanaModal = ({
     const ocultarModal = () => {
         
         setAnimarModal(false)
+        setGastoEditar({})
         
         setTimeout(() => {
           setVentanaModal(false)
