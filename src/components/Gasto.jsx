@@ -47,7 +47,6 @@ const Gasto = ({gasto, setGastoEditar, eliminarGasto}) => {
           onClick={()=>eliminarGasto(id)/*console.log("eliminar....")*/}
           destructive={true}
           >
-          ELIMINAR
         </SwipeAction>
       </TrailingActions>
     )
