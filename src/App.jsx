@@ -107,6 +107,7 @@ function App() {
   <div className={ventanaModal ? "fijar" : "" }>
     <Header
       gastos = {gastos}
+      setGastos={setGastos}
       presupuesto = {presupuesto}
       setPresupuesto = {setPresupuesto}
       presupuestoValido = {presupuestoValido}
@@ -122,6 +123,7 @@ function App() {
           />
           <ListadoGastos
             gastos = {gastos}
+            setGastos = {setGastos}
             setGastoEditar = {setGastoEditar}
             eliminarGasto = {eliminarGasto}
             filtro={filtro}
@@ -138,12 +140,12 @@ function App() {
       </>
     ): null }
     {ventanaModal && <VentanaModal 
-                      setVentanaModal={setVentanaModal}
-                      animarModal={animarModal}
-                      setAnimarModal={setAnimarModal}
-                      guardarGasto={guardarGasto}
-                      gastoEditar={gastoEditar}
-                      setGastoEditar={setGastoEditar}
+                        setVentanaModal={setVentanaModal}
+                        animarModal={animarModal}
+                        setAnimarModal={setAnimarModal}
+                        guardarGasto={guardarGasto}
+                        gastoEditar={gastoEditar}
+                        setGastoEditar={setGastoEditar}
                       />}
 
     

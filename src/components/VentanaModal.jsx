@@ -107,6 +107,7 @@ const VentanaModal = ({
             onChange={(e) => setCategoria(e.target.value)}
             >
               <option value="">-- Seleccione una categoría --</option>
+              <option value="ahorro">Ahorro</option>
               <option value="comida">Comida</option>
               <option value="casa">Casa</option>
               <option value="gastos">Gastos Varios</option>
