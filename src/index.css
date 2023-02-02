@@ -91,6 +91,7 @@ header h1 {
 
 .formulario input[type="text"],
 .formulario input[type="number"] {
+    width: 100%;
     background-color: var(--gris-claro);
     border-radius: 1rem;
     padding: 1rem;
@@ -123,6 +124,7 @@ header h1 {
 }
 
 .formulario select {
+    width: 100%;
     flex: 1;
     padding: 1rem;
     border: none;
