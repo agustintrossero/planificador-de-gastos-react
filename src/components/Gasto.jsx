@@ -1,4 +1,5 @@
 
+import { Children } from "react"
 import {
   LeadingActions,
   SwipeableList,
@@ -36,7 +37,9 @@ const Gasto = ({gasto, setGastoEditar, eliminarGasto}) => {
 
     const leadingActions = ()=>(
       <LeadingActions>
-        <SwipeAction onClick={()=>setGastoEditar(gasto)/*console.log("editar....")*/ }>
+        <SwipeAction 
+        children={nombre}
+        onClick={()=>setGastoEditar(gasto)/*console.log("editar....")*/}>
           EDITAR
         </SwipeAction>
       </LeadingActions>
@@ -44,9 +47,11 @@ const Gasto = ({gasto, setGastoEditar, eliminarGasto}) => {
     const trailingActions = ()=>(
       <TrailingActions>
         <SwipeAction 
+          children={nombre}
           onClick={()=>eliminarGasto(id)/*console.log("eliminar....")*/}
           destructive={true}
           >
+            ELIMINAR
         </SwipeAction>
       </TrailingActions>
     )
